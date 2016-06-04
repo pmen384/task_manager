@@ -7,20 +7,24 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-      <h1 class="logo" href="#"><%= link_to "Task Maneger", '#', id: "logo" %></h1>
+      <h1 class="logo" href="#"><%= link_to "TaskManeger", root_path, id: "logo" %></h1>
     </div>
     
      <div class="collapse navbar-collapse" id="toggle_menu">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   '#' %></li>
+        <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help",   '#' %></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">アカウント<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">新規登録</a></li>
-            <li><%= link_to "Log in", '#' %></li>
-          </ul>
-        </li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">アカウント<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">新規登録</a></li>
+              <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Log in", login_path %></li>
+        <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   
