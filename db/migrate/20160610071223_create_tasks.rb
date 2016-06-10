@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.boolean :do, default: false
+      t.integer :tasktime
 
       t.timestamps null: false
       t.index [:user_id, :created_at]
