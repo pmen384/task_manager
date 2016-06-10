@@ -1,4 +1,73 @@
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="task_form">
+        <%= render 'shared/task_form' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3 class="tac">Tasks (<%= @user.tasks.count %>)</h3>
+      <% if @user.tasks.any? %>
+        <ol class="tasks">
+          <%= render @tasks %>
+        </ol>
+      <% end %>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function(){
+      $("input[type=checkbox]").click(function() {
+        $.post('/users/'+$(this).data("user_id")+'/tasks/'+$(this).data("id")+'/toggle');
+        chkTime();
+      });
+      $("input[type=text], textarea").on("keyup change blur", function(){
+        var dispKey = 0;
+        $("input[type=text], textarea").each(function(){
+          if($(this).val()!="") {
+            dispKey++;
+          }
+          if(dispKey==3) {
+            $("input[type=submit]").removeAttr("disabled");
+          } else {
+            $("input[type=submit]").attr("disabled","disabled");
+          }
+        });
+      });
+      chkTime();
+      function chkTime() {
+        var restTime, taskTime;
+        var useTime = 0;
+        var targetTime = $("#targetTime").text();
+        $("input[type=checkbox]").each(function(){
+          if(!$(this).prop("checked")) {
+            taskTime = $(this).parent().parent().parent().find(".taskTime").text();
+            taskTime = parseInt(taskTime);
+            useTime = useTime+taskTime;
+          }
+        });
+        restTime = parseInt($("#targetTime").text())-useTime;
+        $("#useTime").text(useTime);
+        $("#restTime").text(restTime);
+      }
+      $("#task_tasktime").on("keyup", function(){
+				numOnly($(this));
+			});
+			function numOnly(e) {
+				var num = e.val();
+				if(!num.match(/^\d+$/)) {
+					var newNum = num.replace(/[^0-9]/g,"");
+					e.val(newNum);
+					return false;
+				}
+			}
+    });
+  </script>
+<% else %>
+  <div class="center jumbotron">
+    <h1>Welcome to the Task Manager</h1>
+    <p>お手数ですが、ログイン画面からログインして下さい。</p>
+  </div>
+<% end %>

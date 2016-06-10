@@ -1,2 +1,36 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<% if logged_in? %>
+  <h1>Task Summary</h1>
+  <ul>
+    <li><%= link_to "your task list", current_user %></li>
+  </ul>
+<% else %>
+  <div id="top">
+    <div class="wrapper">
+      <div class="txtArea">
+        <p class="txt1">シンプルで時間管理も簡単</p>
+        <p class="txt2">今までに無いタスク管理</p>
+        <p class="txt3"><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function(){
+      if($("#top")[0]) {
+        $("html").css({width:"100%",height:"100%"});
+        $("body").addClass("full");
+        $(".txt1").delay(1000).animate({
+          opacity: 1,
+          marginTop: 0
+        }, 1000);
+        $(".txt2").delay(2000).animate({
+          opacity: 1,
+          marginTop: 0
+        }, 1000);
+        $(".txt3").delay(3000).animate({
+          opacity: 1
+        }, 1000);
+      }
+    });
+  </script>
+<% end %>
+

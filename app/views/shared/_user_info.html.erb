@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-4">
+      <%= gravatar_for @user %>
+    </div>
+    <div class="col-xs-8">
+      <span class="userName"><%= @user.name %></span>
+    </div>
+  </div>
+  <div class="row timesDisp">
+    <div class="col-xs-4">
+      <p><span class="label label-default">稼働時間</span></p>
+      <p class="times"><span id="targetTime"><%= @user.targettime %></span>時間</p>
+    </div>
+    <div class="col-xs-4">
+      <p><span class="label label-success">割当時間</span></p>
+      <p class="times"><span id="useTime"><%= @user.targettime %></span>時間</p>
+    </div>
+    <div class="col-xs-4">
+      <p><span class="label label-danger">残り時間</span></p>
+      <p class="times"><span id="restTime"><%= @user.targettime %></span>時間</p>
+    </div>
+  </div>
+</div>
+
+

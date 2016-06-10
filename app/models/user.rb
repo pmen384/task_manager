@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validates :targettime, presence: true, numericality: { only_integer: true }, length: { maximum: 3 }
   has_secure_password
   has_many :tasks
 end

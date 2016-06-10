@@ -1,14 +1,14 @@
-<h1>Sign up</h1>
+<h1>Edit</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name, "名前" %>
+      <%= f.label :name, "名前" %><span class="label label-danger ml10">必須</span>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :email, "E-MAIL" %>
+      <%= f.label :email, "E-MAIL" %><span class="label label-danger ml10">必須</span>
       <%= f.text_field :email, class: 'form-control' %>
 
       <%= f.label :password, "パスワード" %>
@@ -17,11 +17,10 @@
       <%= f.label :password_confirmation, "パスワード確認" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-      <%= f.label :targettime, "目標稼働時間" %>
-      <%= f.text_field :targettime, class: 'form-control' %>
+      <%= f.label :targettime, "稼働時間" %><span class="label label-danger ml10">必須</span>
+      <%= f.text_field :targettime, maxlength: "3", class: 'form-control' %>
 
-
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.submit "編集を変更する", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
