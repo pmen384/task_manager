@@ -6,10 +6,10 @@
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name, "名前" %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: "姓名" %>
 
       <%= f.label :email, "E-MAIL" %>
-      <%= f.text_field :email, class: 'form-control' %>
+      <%= f.text_field :email, class: 'form-control', placeholder: "takahiro.sahashi@genova.co.jp" %>
 
       <%= f.label :password, "パスワード" %>
       <%= f.password_field :password, class: 'form-control' %>
@@ -18,7 +18,7 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.label :targettime, "目標稼働時間" %>
-      <%= f.text_field :targettime, class: 'form-control' %>
+      <%= f.text_field :targettime, class: 'form-control', placeholder: "140" %>
 
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
