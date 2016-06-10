@@ -1,10 +1,10 @@
 <%= form_for(@task) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <%= f.label :title, "名前" %><span class="label label-danger ml10">必須</span>
-  <%= f.text_field :title, class: 'form-control' %>
+  <%= f.label :title, "タスク名" %><span class="label label-danger ml10">必須</span>
+  <%= f.text_field :title, class: 'form-control', placeholder: "株式会社カイシャの開発" %>
   <%= f.label :content, "内容" %><span class="label label-danger ml10">必須</span>
-  <%= f.text_area :content, class: 'form-control' %>
+  <%= f.text_area :content, class: 'form-control', placeholder: "レジスター用のアプリ開発。" %>
   <%= f.label :tasktime, "タスク時間" %><span class="label label-danger ml10">必須</span>
-  <%= f.text_field :tasktime, class: 'form-control', maxlength: '3' %>
+  <%= f.text_field :tasktime, class: 'form-control', maxlength: '3', placeholder: "100" %>
   <%= f.submit "タスクを登録", class: "btn btn-large btn-primary", disabled: 'disabled' %>
 <% end %>
